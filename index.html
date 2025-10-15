@@ -81,7 +81,7 @@
         padding: 10px 15px;
       }
     </style>
-  </head>
+
   <body>
     <header>
       <h1>0579</h1>
@@ -89,9 +89,7 @@
     </header>
     <div class="top-ticker-container">
       <div class="top-ticker">
-    <span>  Welcome to 0579  "Learning English can open up a world of opportunities for you" by 0579 </span>
-        
-        
+        <span>  Welcome to 0579  "Learning English can open up a world of opportunities for you" by 0579 </span>
       </div>
     </div>
     <!-- Main Content Container -->
@@ -105,23 +103,16 @@
         overflow: hidden;
         position: relative;
         margin-bottom: 15px;
-        /* Space between the top and bottom ticker */
       }
 
-      /* Add yellow background for the top ticker */
       .top-ticker-container {
         background: #ffd700;
-        /* Yellow background */
         border-radius: 6px;
-        /* Optional: Adds rounded corners to match bottom ticker */
         padding: 10px 0;
         margin: 15px 0;
         height: 50px;
-        /* Set a specific height for the ticker */
         line-height: 50px;
-        /* Vertically center the text */
         z-index: 999;
-        /* Ensure it’s on top if overlapping */
         position: relative;
       }
 
@@ -145,45 +136,33 @@
         text-decoration: underline;
       }
 
-      /* Bottom Ticker Animation */
       @keyframes scroll-left {
         0% {
           transform: translateX(100%);
-          /* Start off-screen */
         }
 
         100% {
           transform: translateX(-100%);
-          /* End off-screen */
         }
       }
 
-      /* Apply animation to both top and bottom tickers */
       .top-ticker,
       .bottom-ticker {
         animation: scroll-left 15s linear infinite;
-        /* Controls the speed of scrolling */
       }
 
-      /* Ticker Speed Control */
       .top-ticker {
         animation-duration: 18s;
-        /* Slow down the top ticker */
       }
     </style>
     <!-- Accordion and Ticker Script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // -----------------------
-        // Accordion functionality
-        // -----------------------
         const accordions = document.querySelectorAll('.accordion');
         accordions.forEach(accordion => {
           const panelId = accordion.getAttribute('aria-controls');
           const panel = document.getElementById(panelId);
-          // Ensure panel exists
           if (!panel) return;
-          // Initialize panel state
           panel.style.maxHeight = '0';
           panel.style.overflow = 'hidden';
           panel.style.transition = 'max-height 0.3s ease';
@@ -201,59 +180,176 @@
             this.setAttribute('aria-expanded', String(!isExpanded));
           });
         });
-        // -----------------------
-        // Top ticker animation
-        // -----------------------
+
         const topTicker = document.querySelector('.top-ticker');
         if (topTicker) {
           let topTickerWidth = topTicker.scrollWidth;
           let topTickerPosition = 0;
-          const topTickerSpeed = 0.5; // pixels per frame
+          const topTickerSpeed = 0.5;
           function animateTopTicker() {
             topTickerPosition -= topTickerSpeed;
             if (Math.abs(topTickerPosition) >= topTickerWidth) {
-              topTickerPosition = 0; // Reset
+              topTickerPosition = 0;
             }
             topTicker.style.transform = `translateX(${topTickerPosition}px)`;
             requestAnimationFrame(animateTopTicker);
           }
           animateTopTicker();
         }
-        // -----------------------
-        // Bottom ticker (optional JS)
-        // -----------------------
+
         const bottomTicker = document.querySelector('.bottom-ticker');
         if (bottomTicker) {
-          // JS logic here if needed
         }
       });
     </script>
+
     <!-- Example CSS for Accordion -->
     <style>
-      .accordion {
-        cursor: pointer;
-        padding: 1em;
-        background: #333;
-        color: #fff;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 1em;
-        transition: background 0.2s;
-      }
+.grid-list a {
+  display: inline-block;
+  margin: 3px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  background-color: royalblue;
+  transition: background 0.2s ease, color 0.2s ease;
+}
 
-      .accordion:hover {
-        background: #444;
-      }
+.grid-list a:hover {
+  background: #ffd700;
+  color: #000;
+}
 
-      .accordion-panel {
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.3s ease;
-        background: #f1f1f1;
-        padding: 0 1em;
-      }
-    </style>
+.level-block {
+  margin-bottom: 20px;
+}
+
+.level-header {
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+  color: royalblue;
+  font-size: 16px;
+}
+
+.test-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.test-link {
+  text-decoration: none;
+  color: white;
+  background-color: royalblue;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.test-link:hover {
+  background-color: green;
+}
+
+@media(max-width: 768px) {
+  .test-row {
+    flex-direction: column;
+  }
+
+  .test-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.notes-container {
+  position: sticky;
+  bottom: 0;
+  background-color: #e6e6e6;
+  padding: 10px;
+  border-top: 2px solid #ccc;
+}
+
+.notes-container textarea {
+  width: 100%;
+  min-height: 120px;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.notes-container input,
+.notes-container button {
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.iframe-area {
+  display: none;
+}
+
+.iframe-area.activeIframe {
+  display: block;
+}
+</style>
+
+<script>
+document.querySelectorAll(".accordion").forEach(function(acc) {
+  acc.addEventListener("click", function() {
+    var panel = acc.nextElementSibling;
+    panel.classList.toggle("open");
+  });
+});
+</script>
+
+<footer style="background-color:#0077cc;color:white;text-align:center;padding:10px;">
+  <p>© 0579 Academy | All Rights Reserved</p>
+</footer>
+</html>
+
+<!-- ===== Additional Panels or Content Sections ===== -->
+<div class="level-block">
+  <div class="level-header">Level 3: Advanced</div>
+  <div class="test-row">
+    <a href="#" class="test-link">Test 7</a>
+    <a href="#" class="test-link">Test 8</a>
+    <a href="#" class="test-link">Test 9</a>
+  </div>
+</div>
+
+<div class="level-block">
+  <div class="level-header">Level 4: Expert</div>
+  <div class="test-row">
+    <a href="#" class="test-link">Test 10</a>
+    <a href="#" class="test-link">Test 11</a>
+    <a href="#" class="test-link">Test 12</a>
+  </div>
+</div>
+
+<!-- Notes Section -->
+<div class="notes-container">
+  <textarea placeholder="Enter your notes here..."></textarea>
+  <input type="text" placeholder="Title">
+  <button type="button">Save Note</button>
+</div>
+
+<!-- Iframe Section -->
+<div class="iframe-area" id="resourceIframe">
+  <iframe src="" width="100%" height="400px" frameborder="0"></iframe>
+</div>
+
+<!-- Accordion Script for New Panels -->
+<script>
+document.querySelectorAll(".accordion").forEach(function(acc) {
+  acc.addEventListener("click", function() {
+    var panel = acc.nextElementSibling;
+    panel.classList.toggle("open");
+  });
+});
+</script>
+    
   </body>
   <!-- Accordion: 학원소개 -->
   <button class="accordion" aria-expanded="false" aria-controls="servicePanel">학원소개</button>
@@ -708,8 +804,6 @@
       /* White outline for better visibility */
     }
   </style>
-  <!DOCTYPE html>
-  <html lang="ko">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1342,4 +1436,4 @@
         }
         // Start the ticker movement
         moveTicker();
-      </script>
+    
