@@ -1,359 +1,142 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0579 Academy</title>
-    <!-- ===== CSS ===== -->
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: white;
-        color: royalblue;
-      }
-
-      header {
-        background: royalblue;
-        color: white;
-        padding: 15px;
-        text-align: center;
-      }
-
-      /* Top ticker */
-      .top-ticker-container {
-        background: #ffd700;
-        overflow: hidden;
-        height: 50px;
-        line-height: 50px;
-      }
-
-      .top-ticker {
-        display: flex;
-        animation: scroll-left 15s linear infinite;
-      }
-
-      .top-ticker span {
-        margin-right: 80px;
-        font-weight: bold;
-      }
-
-      @keyframes scroll-left {
-        0% {
-          transform: translateX(100%);
-        }
-
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-
-      /* Accordion */
-      .accordion {
-        background: #3498db;
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        width: 100%;
-        border: none;
-        margin: 10px 0;
-        border-radius: 6px;
-        text-align: left;
-        transition: 0.3s;
-      }
-
-      .accordion:hover {
-        background: #2980b9;
-      }
-
-      .panel {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        background: #f9f9f9;
-        border: 1px solid #ddd;
-        padding: 0 15px;
-        border-radius: 6px;
-      }
-
-      .panel.open {
-        max-height: 1000px;
-        padding: 10px 15px;
-      }
-    </style>
-
-  <body>
-    <header>
-      <h1>0579</h1>
-      <p>"영어친구 학원에 오신 것을 환영합니다."</p>
-    </header>
-    <div class="top-ticker-container">
-      <div class="top-ticker">
-        <span>  Welcome to 0579  "Learning English can open up a world of opportunities for you" by 0579 </span>
-      </div>
-    </div>
-    <!-- Main Content Container -->
-    <div class="container">
-      <!-- Other content here -->
-    </div>
-    <!-- Ticker Styles -->
-    <style>
-      .ticker-container {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 15px;
-      }
-
-      .top-ticker-container {
-        background: #ffd700;
-        border-radius: 6px;
-        padding: 10px 0;
-        margin: 15px 0;
-        height: 50px;
-        line-height: 50px;
-        z-index: 999;
-        position: relative;
-      }
-
-      .ticker {
-        display: flex;
-        white-space: nowrap;
-        font-weight: bold;
-        will-change: transform;
-      }
-
-      .ticker span {
-        margin-right: 80px;
-      }
-
-      .ticker a {
-        text-decoration: none;
-        color: black;
-      }
-
-      .ticker a:hover {
-        text-decoration: underline;
-      }
-
-      @keyframes scroll-left {
-        0% {
-          transform: translateX(100%);
-        }
-
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-
-      .top-ticker,
-      .bottom-ticker {
-        animation: scroll-left 15s linear infinite;
-      }
-
-      .top-ticker {
-        animation-duration: 18s;
-      }
-    </style>
-    <!-- Accordion and Ticker Script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const accordions = document.querySelectorAll('.accordion');
-        accordions.forEach(accordion => {
-          const panelId = accordion.getAttribute('aria-controls');
-          const panel = document.getElementById(panelId);
-          if (!panel) return;
-          panel.style.maxHeight = '0';
-          panel.style.overflow = 'hidden';
-          panel.style.transition = 'max-height 0.3s ease';
-          panel.setAttribute('aria-hidden', 'true');
-          accordion.setAttribute('aria-expanded', 'false');
-          accordion.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-              panel.style.maxHeight = '0';
-              panel.setAttribute('aria-hidden', 'true');
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + 'px';
-              panel.setAttribute('aria-hidden', 'false');
-            }
-            this.setAttribute('aria-expanded', String(!isExpanded));
-          });
-        });
-
-        const topTicker = document.querySelector('.top-ticker');
-        if (topTicker) {
-          let topTickerWidth = topTicker.scrollWidth;
-          let topTickerPosition = 0;
-          const topTickerSpeed = 0.5;
-          function animateTopTicker() {
-            topTickerPosition -= topTickerSpeed;
-            if (Math.abs(topTickerPosition) >= topTickerWidth) {
-              topTickerPosition = 0;
-            }
-            topTicker.style.transform = `translateX(${topTickerPosition}px)`;
-            requestAnimationFrame(animateTopTicker);
-          }
-          animateTopTicker();
-        }
-
-        const bottomTicker = document.querySelector('.bottom-ticker');
-        if (bottomTicker) {
-        }
-      });
-    </script>
-
-    <!-- Example CSS for Accordion -->
-    <style>
-.grid-list a {
-  display: inline-block;
-  margin: 3px;
-  padding: 6px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: white;
-  background-color: royalblue;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.grid-list a:hover {
-  background: #ffd700;
-  color: #000;
-}
-
-.level-block {
-  margin-bottom: 20px;
-}
-
-.level-header {
-  font-weight: bold;
-  margin: 10px 0 5px 0;
-  color: royalblue;
-  font-size: 16px;
-}
-
-.test-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-.test-link {
-  text-decoration: none;
-  color: white;
-  background-color: royalblue;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-
-.test-link:hover {
-  background-color: green;
-}
-
-@media(max-width: 768px) {
-  .test-row {
-    flex-direction: column;
-  }
-
-  .test-link {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-.notes-container {
-  position: sticky;
-  bottom: 0;
-  background-color: #e6e6e6;
-  padding: 10px;
-  border-top: 2px solid #ccc;
-}
-
-.notes-container textarea {
-  width: 100%;
-  min-height: 120px;
-  font-size: 16px;
-  padding: 10px;
-}
-
-.notes-container input,
-.notes-container button {
-  padding: 8px;
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-.iframe-area {
-  display: none;
-}
-
-.iframe-area.activeIframe {
-  display: block;
-}
-</style>
-
-<script>
-document.querySelectorAll(".accordion").forEach(function(acc) {
-  acc.addEventListener("click", function() {
-    var panel = acc.nextElementSibling;
-    panel.classList.toggle("open");
-  });
-});
-</script>
-
-<footer style="background-color:#0077cc;color:white;text-align:center;padding:10px;">
-  <p>© 0579 Academy | All Rights Reserved</p>
-</footer>
-</html>
-
-<!-- ===== Additional Panels or Content Sections ===== -->
-<div class="level-block">
-  <div class="level-header">Level 3: Advanced</div>
-  <div class="test-row">
-    <a href="#" class="test-link">Test 7</a>
-    <a href="#" class="test-link">Test 8</a>
-    <a href="#" class="test-link">Test 9</a>
+<head>
+  <meta charset="UTF-8">
+  <title>0579 Academy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #4169e1;}
+    header {
+      background: #4169e1;
+      color: #fff;
+      text-align: center;
+      padding: 24px 0 8px 0;
+    }
+    .top-ticker-container, .bottom-ticker-container {
+      background: #ffd700;
+      color: #4169e1;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 12px 0;
+      text-align: center;
+      letter-spacing: 1px;
+      overflow: hidden;
+    }
+    .top-ticker-content, #bottom-ticker {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-left 18s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%);}
+      100% { transform: translateX(-100%);}
+    }
+    .accordion {
+      background: #4169e1;
+      color: #fff;
+      font-weight: bold;
+      padding: 18px 22px;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      transition: background 0.2s;
+      outline: none;
+      box-sizing: border-box;
+      border-radius: 6px;
+    }
+    .accordion:hover, .accordion[aria-expanded="true"] {
+      background: #27409a;
+    }
+    .panel {
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      color: #222;
+      transition: max-height 0.35s cubic-bezier(.4,0,.2,1);
+      padding: 0 22px;
+      border-bottom: 1px solid #eee;
+      box-sizing: border-box;
+    }
+    .panel.open {
+      max-height: 1000px;
+      padding: 18px 22px;
+    }
+    .test-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .test-link {
+      text-decoration: none;
+      color: #fff;
+      background-color: #4169e1;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.2s;
+      margin: 2px;
+    }
+    .test-link:hover {
+      background: #27409a;
+    }
+    .notes-container {
+      background: #e6e6e6;
+      padding: 20px;
+      margin: 40px auto 0 auto;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+    .notes-container h3 { color:#4169e1; margin-top:0;}
+    #noteBox { width:100%; min-height:120px; padding:10px; font-size:16px; border:1px solid #ccc; background:#fff; color:#222; border-radius:5px;}
+    .input-row { margin:10px 0;}
+    .notes-container input, .notes-container button { padding:8px; font-size:15px;}
+    .notes-container button { background:#4169e1; color:#fff; border:none; border-radius:5px; cursor:pointer;}
+    .notes-container button:hover { background:#27409a;}
+    .message { margin:12px 0; font-weight:bold; }
+    iframe { width:100%; height:230px; border:1px solid #ccc; border-radius:5px; margin-top:10px; }
+    @media (max-width: 900px) {
+      .test-row { flex-direction: column; }
+      .notes-container { padding: 8px; }
+    }
+    @media (max-width: 600px) {
+      .accordion, .panel { font-size: 17px; padding-left: 10px; padding-right: 10px; }
+      .test-row { flex-direction: column; }
+      .notes-container { padding: 8px; }
+    }
+    footer {
+      background: #4169e1;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 24px;
+    }
+    .level-header {
+      font-weight: bold;
+      margin: 10px 0 5px 0;
+      color: #4169e1;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>0579</h1>
+    <p>"영어친구 학원에 오신 것을 환영합니다."</p>
+  </header>
+  <div class="top-ticker-container">
+    <span class="top-ticker-content">
+      Welcome to 0579 "Learning English can open up a world of opportunities for you" by 0579
+    </span>
   </div>
-</div>
 
-<div class="level-block">
-  <div class="level-header">Level 4: Expert</div>
-  <div class="test-row">
-    <a href="#" class="test-link">Test 10</a>
-    <a href="#" class="test-link">Test 11</a>
-    <a href="#" class="test-link">Test 12</a>
-  </div>
-</div>
-
-<!-- Notes Section -->
-<div class="notes-container">
-  <textarea placeholder="Enter your notes here..."></textarea>
-  <input type="text" placeholder="Title">
-  <button type="button">Save Note</button>
-</div>
-
-<!-- Iframe Section -->
-<div class="iframe-area" id="resourceIframe">
-  <iframe src="" width="100%" height="400px" frameborder="0"></iframe>
-</div>
-
-<!-- Accordion Script for New Panels -->
-<script>
-document.querySelectorAll(".accordion").forEach(function(acc) {
-  acc.addEventListener("click", function() {
-    var panel = acc.nextElementSibling;
-    panel.classList.toggle("open");
-  });
-});
-</script>
-    
-  </body>
-  <!-- Accordion: 학원소개 -->
-  <button class="accordion" aria-expanded="false" aria-controls="servicePanel">학원소개</button>
-  <div id="servicePanel" class="panel">
+  <button class="accordion" aria-expanded="false">학원소개</button>
+  <div class="panel">
     <h3>수강과목</h3>
     <ul>
       <li>AI 활용 스마트폰 영어학습법</li>
@@ -364,11 +147,14 @@ document.querySelectorAll(".accordion").forEach(function(acc) {
       <li>영어일기쓰기 교정</li>
       <li>중등/고등/모의고사 쪽집게 풀이</li>
       <li>영어 스피치 & 각종 창의력 대회 준비</li>
-      <li>자녀 영어교육 상담 희망문자 및 예약: <br>☎ 010-4733-0579 <br>✉ ciaohjoonyeong@gmail.com </li>
+      <li>
+        자녀 영어교육 상담 희망문자 및 예약: <br>
+        ☎ 010-4733-0579 <br>
+        ✉ ciaohjoonyeong@gmail.com
+      </li>
     </ul>
-    <!-- Accordion: 학원자료실 -->
-    <button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학원자료실</button>
-    <div id="rulesPanel" class="panel">
+    <button class="accordion" aria-expanded="false">학원자료실</button>
+    <div class="panel">
       <h3>자료종류</h3>
       <ol>
         <li>유튜브 강의</li>
@@ -382,12 +168,12 @@ document.querySelectorAll(".accordion").forEach(function(acc) {
       <li>단정한 복장 착용과 예의바른 언어사용</li>
       <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
     </ul>
-    <h3>학원비및 교재비 수납 계좌</h3>
+    <h3>학원비 및 교재비 수납 계좌</h3>
     <p>기업은행 : 010-4733-0579 (예금주: 오준영)</p>
   </div>
-  <!-- Accordion: 신규 및 학부모 상담 -->
-  <button class="accordion" aria-expanded="false" aria-controls="rulesPane2">신규 및 학부모 상담</button>
-  <div id="rulesPane2" class="panel">
+
+  <button class="accordion" aria-expanded="false">신규 및 학부모 상담</button>
+  <div class="panel">
     <h3>학원소개영상</h3>
     <h3>학원 프로그램 소개</h3>
     <h3>학원 목표 및 정신</h3>
@@ -401,1039 +187,145 @@ document.querySelectorAll(".accordion").forEach(function(acc) {
       <li>원장 특별강의 다운로드</li>
     </ol>
   </div>
-  <!-- Your existing panels above -->
-  <!-- Insert new panels here -->
-  <!-- Accordion Button -->
-<button class="accordion" aria-expanded="false" aria-controls="studentLevelPanel">
-  수강생 레벨 테스트
-</button>
 
-<!-- Accordion Panel -->
-<div id="studentLevelPanel" class="panel">
-  <section class="test-container">
-    <!-- Levels 1–4 -->
-    <div class="test-category">
-      <h3>Levels 1–4</h3>
-      <ul class="test-subcategory">
-        <li><a href="tests/level-1/placement/index.html" class="test-link">L1 Placement</a></li>
-        <li><a href="tests/level-2/placement/index.html" class="test-link">L2 Placement</a></li>
-        <li><a href="tests/level-3/placement/index.html" class="test-link">L3 Placement</a></li>
-        <li><a href="tests/level-4/placement/index.html" class="test-link">L4 Placement</a></li>
-      </ul>
+  <button class="accordion" aria-expanded="false">수강생 레벨 테스트</button>
+  <div class="panel">
+    <div class="test-row">
+      <a href="tests/level-1/placement/index.html" class="test-link">L1 Placement</a>
+      <a href="tests/level-2/placement/index.html" class="test-link">L2 Placement</a>
+      <a href="tests/level-3/placement/index.html" class="test-link">L3 Placement</a>
+      <a href="tests/level-4/placement/index.html" class="test-link">L4 Placement</a>
     </div>
-
-    <!-- Levels 5–8 -->
-    <div class="test-category">
-      <h3>Levels 5–8</h3>
-      <ul class="test-subcategory">
-        <li><a href="tests/level-5/placement/index.html" class="test-link">L5 Placement</a></li>
-        <li><a href="tests/level-6/placement/index.html" class="test-link">L6 Placement</a></li>
-        <li><a href="tests/level-7/placement/index.html" class="test-link">L7 Placement</a></li>
-        <li><a href="tests/level-8/placement/index.html" class="test-link">L8 Placement</a></li>
-      </ul>
+    <div class="test-row">
+      <a href="tests/level-5/placement/index.html" class="test-link">L5 Placement</a>
+      <a href="tests/level-6/placement/index.html" class="test-link">L6 Placement</a>
+      <a href="tests/level-7/placement/index.html" class="test-link">L7 Placement</a>
+      <a href="tests/level-8/placement/index.html" class="test-link">L8 Placement</a>
     </div>
-
-    <!-- Levels 9–12 -->
-    <div class="test-category">
-      <h3>Levels 9–12</h3>
-      <ul class="test-subcategory">
-        <li><a href="tests/level-9/placement/index.html" class="test-link">L9 Placement</a></li>
-        <li><a href="tests/level-10/placement/index.html" class="test-link">L10 Placement</a></li>
-        <li><a href="tests/level-11/placement/index.html" class="test-link">L11 Placement</a></li>
-        <li><a href="tests/level-12/placement/index.html" class="test-link">L12 Placement</a></li>
-      </ul>
+    <div class="test-row">
+      <a href="tests/level-9/placement/index.html" class="test-link">L9 Placement</a>
+      <a href="tests/level-10/placement/index.html" class="test-link">L10 Placement</a>
+      <a href="tests/level-11/placement/index.html" class="test-link">L11 Placement</a>
+      <a href="tests/level-12/placement/index.html" class="test-link">L12 Placement</a>
     </div>
-  </section>
-</div>
+  </div>
 
-<!-- Styles -->
-<style>
-  .accordion {
-    background-color: royalblue;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
-    border: none;
-    text-align: center;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
+  <button class="accordion" aria-expanded="false">통합영어학습 테스트</button>
+  <div class="panel">
+    <div class="test-row">
+      <a href="#" class="test-link">Vocab</a>
+      <a href="#" class="test-link">Grammar</a>
+      <a href="#" class="test-link">Listening</a>
+      <a href="#" class="test-link">Speaking</a>
+      <a href="#" class="test-link">Reading</a>
+      <a href="#" class="test-link">Writing</a>
+    </div>
+  </div>
 
-  .accordion:hover {
-    background-color: green;
-  }
+  <button class="accordion" aria-expanded="false">수강생 학습노트</button>
+  <div class="panel">
+    <div class="notes-container">
+      <h3>📝 학생 학습노트 제출</h3>
+      <form id="studentNoteForm" onsubmit="return false;">
+        <div class="input-row">
+          이름(닉네임): <input type="text" id="from_name" name="from_name" required>
+        </div>
+        <div class="input-row">
+          이메일 주소: <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="input-row">
+          <div id="noteBox" contenteditable="true" style="background:#fff;">여기에 노트를 작성하세요...</div>
+          <input type="hidden" id="message" name="message">
+        </div>
+        <div class="input-row">
+          <button type="button" onclick="sendNote()">✉️ 선생님께 바로 제출하기</button>
+          <span id="msg" class="message"></span>
+        </div>
+      </form>
+      <h4 style="color:#4169e1;margin-top:30px;">Wikipedia</h4>
+      <input type="text" id="wikiQuery" placeholder="Search Wikipedia..." style="width:70%;padding:8px;border-radius:3px; border:1px solid #ccc;">
+      <button onclick="searchWiki()" style="padding:8px 12px;background-color:#4169e1;color:white;border:none; cursor:pointer;">Search</button>
+      <iframe id="wikiFrame" src="https://en.wikipedia.org/wiki/Main_Page"></iframe>
+    </div>
+  </div>
 
-  .panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-  }
+  <button class="accordion" aria-expanded="false">Teachers' Guide</button>
+  <div class="panel">
+    <div class="test-row">
+      <a href="#" class="test-link">Guide 1</a>
+      <a href="#" class="test-link">Guide 2</a>
+    </div>
+  </div>
 
-  .panel.open {
-    max-height: 1000px; /* Enough height to show content */
-    transition: max-height 0.4s ease-in;
-  }
+  <div class="bottom-ticker-container">
+    <div id="bottom-ticker">
+      <span>
+        <a href="https://www.cnn.com/2025/09/25/europe/russia-daytime-drone-attacks-ukraine-intl-cmd" target="_blank">Russia's Daytime Drone Attacks on Ukraine</a>
+      </span>
+      <span>
+        <a href="https://www.cnn.com/2025/09/24/world/yemen-drone-attack-eilat-intl-latam" target="_blank">Yemen Drone Attack on Eilat</a>
+      </span>
+      <span>
+        <a href="https://www.cnn.com/2025/09/22/europe/copenhagen-oslo-airport-closed-drones-int-latam" target="_blank">Copenhagen & Oslo Airports Closed Due to Drones</a>
+      </span>
+      <span>
+        <a href="https://www.cnn.com/2025/09/23/middleeast/recognizing-palestinian-state-explainer-intl-latam" target="_blank">Explainer: Recognizing a Palestinian State</a>
+      </span>
+    </div>
+  </div>
 
-  /* Main test container */
-  .test-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .test-category {
-    background-color: #f9f9f9;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    width: 250px;
-  }
-
-  .test-category h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: royalblue;
-  }
-
-  .test-subcategory {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .test-subcategory li {
-    margin: 5px 0;
-  }
-
-  .test-link {
-    text-decoration: none;
-    color: white;
-    background-color: royalblue;
-    padding: 8px 12px;
-    border-radius: 5px;
-    display: inline-block;
-    transition: background-color 0.2s ease;
-  }
-
-  .test-link:hover {
-    background-color: green;
-  }
-
-  /* Responsive tweak (optional) */
-  @media (max-width: 768px) {
-    .test-category {
-      width: 90%;
-    }
-  }
-</style>
-
-<!-- Accordion Toggle Script -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const accordions = document.querySelectorAll(".accordion");
-
-    accordions.forEach(acc => {
-      acc.addEventListener("click", () => {
+  <footer>
+    <p>© 0579 Academy | All Rights Reserved</p>
+  </footer>
+  <script>
+    // Accordion logic
+    document.querySelectorAll('.accordion').forEach(acc => {
+      acc.addEventListener('click', function() {
         const panel = acc.nextElementSibling;
-        const isOpen = panel.classList.contains("open");
-
-        // Close all panels if you want only one open at a time
-        document.querySelectorAll(".panel").forEach(p => p.classList.remove("open"));
-
-        if (!isOpen) {
-          panel.classList.add("open");
-        }
+        panel.classList.toggle('open');
+        acc.setAttribute("aria-expanded", panel.classList.contains('open') ? "true" : "false");
       });
     });
-  });
-</script>
 
-  <!-- 📌 수강생 레벨 테스트 -->
-  <button class="accordion" aria-expanded="false" aria-controls="studentLevelPanel">수강생 레벨 테스트</button>
-  <div id="수강생LevelPanel" class="panel">
-    <section id="수강생-level-tests" class="test-container">
-      <!-- Levels 1–4 -->
-      <div class="test-category">
-        <h3>Levels 1–4</h3>
-        <ul class="test-subcategory">
-          <li>
-            <a href="tests/level-1/placement/index.html" class="test-link">L1 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-2/placement/index.html" class="test-link">L2 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-3/placement/index.html" class="test-link">L3 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-4/placement/index.html" class="test-link">L4 Placement</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Levels 5–8 -->
-      <div class="test-category">
-        <h3>Levels 5–8</h3>
-        <ul class="test-subcategory">
-          <li>
-            <a href="tests/level-5/placement/index.html" class="test-link">L5 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-6/placement/index.html" class="test-link">L6 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-7/placement/index.html" class="test-link">L7 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-8/placement/index.html" class="test-link">L8 Placement</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Levels 9–12 -->
-      <div class="test-category">
-        <h3>Levels 9–12</h3>
-        <ul class="test-subcategory">
-          <li>
-            <a href="tests/level-9/placement/index.html" class="test-link">L9 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-10/placement/index.html" class="test-link">L10 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-11/placement/index.html" class="test-link">L11 Placement</a>
-          </li>
-          <li>
-            <a href="tests/level-12/placement/index.html" class="test-link">L12 Placement</a>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </div>
-  <!-- 통합영어학습 테스트 Accordion -->
-  <button class="accordion" aria-expanded="false" aria-controls="supplementTestsPanel">통합영어학습 테스트</button>
-  <div id="supplementTestsPanel" class="panel">
-    <section class="pillar-grid">
-      <!-- Levels 1–12 simplified -->
-      <div class="level-block">
-        <div class="level-header">Level 1</div>
-        <div class="test-row">
-          <a href="tests/level-1/통합영어학습 테스트/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-1/통합영어학습 테스트/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-1/통합영어학습 테스트/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-1/통합영어학습 테스트/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-1/통합영어학습 테스트/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-1/통합영어학습 테스트/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <div class="level-header">Level 2</div>
-        <div class="test-row">
-          <a href="tests/level-2/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-2/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-2/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-2/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-2/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-2/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <div class="level-header">Level 3</div>
-        <div class="test-row">
-          <a href="tests/level-3/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-3/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-3/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-3/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-3/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-3/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <div class="level-header">Level 4</div>
-        <div class="test-row">
-          <a href="tests/level-4/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-4/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-4/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-4/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-4/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-4/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 6 -->
-        <div class="level-header">Level 6</div>
-        <div class="test-row">
-          <a href="tests/level-6/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-6/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-6/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-6/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-6/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-6/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 7 -->
-        <div class="level-header">Level 7</div>
-        <div class="test-row">
-          <a href="tests/level-7/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-7/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-7/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-7/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-7/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-7/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 8 -->
-        <div class="level-header">Level 8</div>
-        <div class="test-row">
-          <a href="tests/level-8/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-8/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-8/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-8/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-8/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-8/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 9 -->
-        <div class="level-header">Level 9</div>
-        <div class="test-row">
-          <a href="tests/level-9/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-9/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-9/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-9/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-9/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-9/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 10 -->
-        <div class="level-header">Level 10</div>
-        <div class="test-row">
-          <a href="tests/level-10/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-10/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-10/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-10/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-10/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-10/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 11 -->
-        <div class="level-header">Level 11</div>
-        <div class="test-row">
-          <a href="tests/level-11/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-11/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-11/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-11/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-11/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-11/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-        <!-- Level 12 -->
-        <div class="level-header">Level 12</div>
-        <div class="test-row">
-          <a href="tests/level-12/통합영어학습 테스트-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-          <a href="tests/level-12/통합영어학습 테스트-tests/Grammar/index.html" class="test-link">Grammar</a>
-          <a href="tests/level-12/통합영어학습 테스트-tests/Listening/index.html" class="test-link">Listening</a>
-          <a href="tests/level-12/통합영어학습 테스트-tests/Speaking/index.html" class="test-link">Speaking</a>
-          <a href="tests/level-12/통합영어학습 테스트-tests/Reading/index.html" class="test-link">Reading</a>
-          <a href="tests/level-12/통합영어학습 테스트-tests/Writing/index.html" class="test-link">Writing</a>
-        </div>
-      </div>
-      <!-- end level-block -->
-    </section>
-  </div>
-  <!-- end panel -->
-  <!-- ===== Accordion Styles ===== -->
-  <style>
-    .accordion {
-      background-color: #3498db;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      /* Focus outline removed for design consistency */
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      /* Smooth background-color transition */
-      margin: 10px 0;
-      /* consistent spacing between accordions */
-      border-radius: 6px;
+    // Initialize EmailJS with your user ID!
+    emailjs.init("YOUR_EMAILJS_USER_ID"); // <-- Replace with your EmailJS User ID
+
+    function sendNote() {
+      var from_name = document.getElementById("from_name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var message = document.getElementById("noteBox").innerText.trim();
+      document.getElementById('message').value = message;
+      var time = new Date().toLocaleString();
+
+      if (!from_name || !email || !message) {
+        document.getElementById("msg").textContent = "이름, 이메일, 노트를 모두 입력하세요!";
+        document.getElementById("msg").style.color = "red";
+        return;
+      }
+
+      // Send via EmailJS, match variable names to your EmailJS template!
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        from_name: from_name,
+        email: email,
+        message: message,
+        time: time
+      })
+      .then(function() {
+        document.getElementById("msg").textContent = "선생님께 성공적으로 전송되었습니다!";
+        document.getElementById("msg").style.color = "green";
+        document.getElementById("studentNoteForm").reset();
+        document.getElementById("noteBox").innerText = "";
+      }, function(error) {
+        document.getElementById("msg").textContent = "전송에 실패했습니다. 다시 시도하세요.";
+        document.getElementById("msg").style.color = "red";
+      });
     }
 
-    .accordion:hover,
-    .accordion:focus {
-      background-color: #2980b9;
-      /* Same color for hover and focus */
+    function searchWiki() {
+      const query = document.getElementById("wikiQuery").value.trim();
+      if (!query) return;
+      document.getElementById("wikiFrame").src = "https://en.wikipedia.org/wiki/" + encodeURIComponent(query);
     }
-
-    .accordion.active {
-      background-color: #2c3e50;
-      /* Active state */
-    }
-
-    .panel {
-      padding: 10px 15px;
-      background-color: #f9f9f9;
-      display: block;
-      /* Ensures that the panel is initially visible when expanded */
-      max-height: 0;
-      /* Initially collapsed */
-      overflow: hidden;
-      margin-bottom: 10px;
-      /* Consistent space below panel */
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      transition: max-height 0.3s ease-out;
-      /* Smooth expansion transition */
-    }
-
-    .panel ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .panel li {
-      margin: 5px 0;
-    }
-
-    .panel a {
-      text-decoration: none;
-      color: #333;
-      transition: color 0.2s ease;
-      /* Smooth text color transition */
-    }
-
-    .panel a:hover {
-      text-decoration: underline;
-      color: #000;
-    }
-
-    /* Ensure focus states for accessibility */
-    .accordion:focus {
-      outline: 2px solid #fff;
-      /* White outline for better visibility */
-    }
-  </style>
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>수강생 학습노트</title>
-      <style>
-        body {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-          background-color: #f2f2f2;
-        }
-
-        header {
-          background-color: #0077cc;
-          color: white;
-          padding: 10px;
-          text-align: center;
-        }
-
-        .tab-buttons {
-          display: flex;
-          justify-content: space-around;
-          background-color: #005fa3;
-        }
-
-        .tab-buttons button {
-          flex: 1;
-          padding: 10px;
-          background-color: #005fa3;
-          color: white;
-          border: none;
-          cursor: pointer;
-          font-size: 16px;
-        }
-
-        .tab-buttons button.active {
-          background-color: #0077cc;
-        }
-
-        .main-content {
-          flex: 1;
-          overflow-y: auto;
-          padding: 10px;
-          background-color: #fff;
-        }
-
-        .panel {
-          display: none;
-        }
-
-        .panel.active {
-          display: block;
-        }
-
-        .notes-container {
-          position: sticky;
-          bottom: 0;
-          background-color: #e6e6e6;
-          padding: 10px;
-          border-top: 2px solid #ccc;
-        }
-
-        .notes-container textarea {
-          width: 100%;
-          min-height: 120px;
-          font-size: 16px;
-          padding: 10px;
-        }
-
-        .notes-container input,
-        .notes-container button {
-          padding: 8px;
-          margin-top: 5px;
-          font-size: 14px;
-        }
-
-        iframe {
-          width: 100%;
-          height: 300px;
-          border: none;
-        }
-
-        @media (max-width: 600px) {
-          .notes-container textarea {
-            min-height: 150px;
-          }
-
-          .tab-buttons button {
-            font-size: 14px;
-            padding: 8px;
-          }
-        }
-      </style>
-      <!-- Accordion -->
-      <button class="accordion">수강생 학습노트</button>
-      <div class="panel">
-        <div class="dashboard" style="text-align:center; padding:15px;">
-          <!-- Email Section -->
-          <div class="email-section" style="margin:15px 0;">
-            <h3>✉️ Email</h3>
-            <input type="text" id="emailAddress" placeholder="Recipient Email" style="width:80%; padding:8px; margin-bottom:5px;">
-            <input type="text" id="emailSubject" placeholder="Email Subject" style="width:80%; padding:8px; margin-bottom:5px;">
-            <textarea id="emailBox" placeholder="Write your email here..." style="width:80%; height:120px; padding:10px; font-size:16px;"></textarea>
-            <br>
-            <button onclick="sendEmailToTeacher()" style="padding:8px 12px;background-color:royalblue;color:white;border:none;margin:5px; cursor:pointer;">To Teacher</button>
-            <button onclick="sendEmailToMe()" style="padding:8px 12px;background-color:royalblue;color:white;border:none;margin:5px; cursor:pointer;">To Me</button>
-            <button onclick="downloadEmail()" style="padding:8px 12px;background-color:green;color:white;border:none;margin:5px; cursor:pointer;">💾 Download</button>
-          </div>
-          <hr>
-          <!-- Note Section with Image Upload -->
-          <div class="note-section" style="margin:15px 0;">
-            <h3>📝 My Notes</h3>
-            <div id="noteBox" contenteditable="true" style="width:80%; min-height:120px; padding:10px; font-size:16px; border:1px solid #ccc; overflow:auto;"> Write your notes here... </div>
-            <br>
-            <input type="file" id="imageUpload" accept="image/*" style="margin-top:5px;">
-            <button onclick="insertImage()" style="padding:8px 12px; background-color:royalblue; color:white; border:none; margin:5px; cursor:pointer;">📷 Add Image</button>
-            <br>
-            <button onclick="downloadNote()" style="padding:8px 12px;background-color:green;color:white;border:none;margin:5px; cursor:pointer;">💾 Download Note</button>
-          </div>
-          <hr>
-          <!-- Search and Site Buttons Section -->
-          <div class="search-section" style="margin:15px 0;">
-            <div style="margin-bottom:10px;">
-              <button onclick="openSite('https://www.collinsdictionary.com/dictionary/english/')" class="searchSiteBtn">Dictionary</button>
-              <button onclick="openSite('https://www.google.com/')" class="searchSiteBtn">Google</button>
-              <button onclick="selectSearchSite('wiki')" class="searchSiteBtn">Wikipedia</button>
-              <button onclick="openSite('https://chat.openai.com/')" class="searchSiteBtn">ChatGPT</button>
-              <button onclick="openSite('https://www.youtube.com/')" class="searchSiteBtn">YouTube</button>
-              <button onclick="openSite('https://www.bbc.com/news')" class="searchSiteBtn">News</button>
-            </div>
-            <input type="text" id="searchQuery" placeholder="Type your query here..." style="width:80%; padding:8px;">
-            <button onclick="searchSite()" style="padding:8px 12px;background-color:royalblue;color:white;border:none;margin-top:5px; cursor:pointer;">Search</button>
-          </div>
-          <!-- Content Area for Wikipedia -->
-          <div class="content-area" style="margin-top:10px;">
-            <iframe id="wikiFrame" class="iframe-area activeIframe" src="https://en.wikipedia.org/wiki/Main_Page" style="width:90%; height:400px; border:1px solid #ccc;"></iframe>
-          </div>
-        </div>
-      </div>
-      <style>
-        /* Accordion */
-        .accordion {
-          background-color: royalblue;
-          color: white;
-          cursor: pointer;
-          padding: 15px;
-          width: 100%;
-          border: none;
-          text-align: center;
-          font-size: 18px;
-          transition: 0.3s;
-        }
-
-        .accordion:hover {
-          background-color: green;
-        }
-
-        .panel {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease;
-        }
-
-        /* Iframe display */
-        .iframe-area {
-          display: none;
-        }
-
-        .iframe-area.activeIframe {
-          display: block;
-        }
-
-        /* Buttons styling */
-        .searchSiteBtn {
-          padding: 8px 12px;
-          margin: 3px;
-          cursor: pointer;
-          background-color: royalblue;
-          color: white;
-          border: none;
-          border-radius: 4px;
-        }
-
-        .searchSiteBtn:hover {
-          background-color: green;
-        }
-      </style>
-      <script>
-        // Accordion toggle
-        document.querySelectorAll(".accordion").forEach(acc => {
-          acc.addEventListener("click", () => {
-            const panel = acc.nextElementSibling;
-            panel.classList.toggle("open");
-          });
-        });
-        // Search iframe for Wikipedia
-        function selectSearchSite(site) {
-          if (site === 'wiki') {
-            document.querySelectorAll(".iframe-area").forEach(f => f.classList.remove("activeIframe"));
-            document.getElementById("wikiFrame").classList.add("activeIframe");
-          }
-        }
-        // Other sites open in new tab
-        function openSite(url) {
-          window.open(url, "_blank");
-        }
-        // Search function for Wikipedia iframe
-        function searchSite() {
-          const query = document.getElementById("searchQuery").value;
-          if (!query) return;
-          const wikiUrl = "https://en.wikipedia.org/wiki/" + encodeURIComponent(query);
-          document.getElementById("wikiFrame").src = wikiUrl;
-        }
-        // Email & Notes functions
-        function sendEmailToTeacher() {
-          const to = document.getElementById("emailAddress").value || "teacher@example.com";
-          const subject = document.getElementById("emailSubject").value;
-          const body = document.getElementById("emailBox").value;
-          window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
-        function sendEmailToMe() {
-          const to = prompt("Enter your email:");
-          if (!to) return;
-          const subject = document.getElementById("emailSubject").value;
-          const body = document.getElementById("emailBox").value;
-          window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
-        function downloadEmail() {
-          const text = document.getElementById("emailBox").value;
-          const blob = new Blob([text], {
-            type: "text/plain"
-          });
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = "email.txt";
-          link.click();
-        }
-        // Notes + Image Upload
-        function insertImage() {
-          const input = document.getElementById("imageUpload");
-          if (!input.files || !input.files[0]) return;
-          const file = input.files[0];
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            img.style.maxWidth = "100%";
-            img.style.marginTop = "5px";
-            document.getElementById("noteBox").appendChild(img);
-          };
-          reader.readAsDataURL(file);
-          input.value = "";
-        }
-
-        function downloadNote() {
-          const noteContent = document.getElementById("noteBox").innerHTML;
-          const blob = new Blob([noteContent], {
-            type: "text/html"
-          }); // includes images
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = "note.html";
-          link.click();
-        }
-      </script>
-      <!-- Teachers Accordion -->
-      <button class="accordion" aria-expanded="false" aria-controls="teacherPanel">Teachers' Guide</button>
-      <div id="teacherPanel" class="panel">
-        <div class="grid-list" id="teacher-lessons"></div>
-      </div>
-      <!-- Grid and Accordion Styles -->
-      <style>
-        /* ===== Grid Styles ===== */
-        .grid-list {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          /* 4 columns in larger screens */
-          gap: 5px 8px;
-          /* Space between grid items */
-          padding: 10px 0;
-          margin: 0 auto;
-          /* Center grid content */
-        }
-
-        /* Responsive grid layout for smaller screens */
-        @media(max-width: 768px) {
-          .grid-list {
-            grid-template-columns: repeat(2, 1fr);
-            /* 2 columns on medium screens */
-          }
-        }
-
-        @media(max-width: 480px) {
-          .grid-list {
-            grid-template-columns: 1fr;
-            /* 1 column on small screens */
-          }
-        }
-
-        /* Grid item links styling */
-        .grid-list a {
-          display: block;
-          font-size: 0.75em;
-          text-align: center;
-          padding: 8px 12px;
-          /* More padding for better spacing */
-          background: #f0f0f0;
-          border-radius: 4px;
-          text-decoration: none;
-          color: #333;
-          transition: background 0.2s ease, color 0.2s ease;
-          /* Smooth background and color transition */
-        }
-
-        /* Hover effect for grid items */
-        .grid-list a:hover {
-          background: #ffd700;
-          /* Highlight background */
-          color: #000;
-          /* Text color on hover */
-        }
-
-        /* ===== Accordion Styles ===== */
-        .accordion {
-          background: royalblue;
-          color: white;
-          font-weight: bold;
-          padding: 12px 15px;
-          width: 100%;
-          text-align: left;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-          margin: 8px 0;
-          transition: background 0.3s ease;
-          /* Smooth background transition */
-        }
-
-        /* Hover effect for accordion buttons */
-        .accordion:hover {
-          background: #0056b3;
-          /* Slightly darker blue on hover */
-        }
-
-        /* Active state for accordion buttons */
-        .accordion.active {
-          background: #2c3e50;
-          /* Darker color when active */
-        }
-
-        /* ===== Accordion Panel Styles ===== */
-        .panel {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.35s ease;
-          /* Smooth transition for expansion */
-          background: #f9f9f9;
-          border-radius: 6px;
-          border: 1px solid #ddd;
-          /* Light border around the panel */
-          padding: 0 15px;
-          /* Padding for content inside the panel */
-          margin-bottom: 10px;
-          /* Space below each panel */
-        }
-      </style>
-      <!-- CSS for Background Colors and Grid Layout -->
-      <style>
-        /* ===== Background colors for levels ===== */
-        .bg-level-a {
-          background-color: #E6F0FF;
-        }
-
-        /* soft sky blue */
-        .bg-level-b {
-          background-color: #E8F8F5;
-        }
-
-        /* mint green */
-        .bg-level-c {
-          background-color: #FFF9E6;
-        }
-
-        /* warm light yellow */
-        .bg-level-d {
-          background-color: #FDEDEC;
-        }
-
-        /* pastel coral */
-        /* ===== Responsive Grid ===== */
-        .grid-list {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          /* Default 4 columns */
-          gap: 5px 8px;
-          padding: 10px 0;
-          margin: 0 auto;
-          /* Center grid content */
-        }
-
-        /* Responsive grid layout for medium screens (768px) */
-        @media (max-width: 768px) {
-          .grid-list {
-            grid-template-columns: repeat(2, 1fr);
-            /* 2 columns on medium screens */
-          }
-        }
-
-        /* Responsive grid layout for small screens (480px) */
-        @media (max-width: 480px) {
-          .grid-list {
-            grid-template-columns: 1fr;
-            /* 1 column on small screens */
-          }
-        }
-
-        /* ===== Grid Item Styling ===== */
-        .grid-list a {
-          display: block;
-          font-size: 0.75em;
-          text-align: center;
-          padding: 8px 12px;
-          /* More padding for better spacing */
-          background: #f0f0f0;
-          border-radius: 4px;
-          text-decoration: none;
-          color: #333;
-          transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        /* Hover effect for grid items */
-        .grid-list a:hover {
-          background: #ffd700;
-          /* Highlight background */
-          color: #000;
-          /* Text color on hover */
-        }
-
-        /* ===== Accordion Styles ===== */
-        .accordion {
-          background: royalblue;
-          color: white;
-          font-weight: bold;
-          padding: 12px 15px;
-          width: 100%;
-          text-align: left;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-          margin: 8px 0;
-          transition: background 0.3s ease;
-        }
-
-        /* Hover effect for accordion buttons */
-        .accordion:hover {
-          background: #0056b3;
-        }
-
-        /* Active state for accordion buttons */
-        .accordion.active {
-          background: #2c3e50;
-        }
-
-        /* ===== Accordion Panel Styles ===== */
-        .panel {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.35s ease;
-          background: #f9f9f9;
-          border-radius: 6px;
-          border: 1px solid #ddd;
-          padding: 0 15px;
-          margin-bottom: 10px;
-        }
-      </style>
-      <!-- JavaScript for Accordion and Dynamic Content -->
-      <script>
-        // Accordion Toggle Function
-        document.querySelectorAll(".accordion").forEach(acc => {
-          acc.addEventListener("click", function() {
-            const panel = this.nextElementSibling;
-            this.classList.toggle("active");
-            // Toggle panel maxHeight and update aria-expanded
-            if (panel.style.maxHeight) {
-              panel.style.maxHeight = null;
-              this.setAttribute("aria-expanded", "false");
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + "px";
-              this.setAttribute("aria-expanded", "true");
-            }
-          });
-        });
-        // Reusable function to generate notes or lessons
-        function generateLinks(containerId, prefix) {
-          const container = document.getElementById(containerId);
-          for (let i = 1; i <= 120; i++) {
-            const a = document.createElement("a");
-            a.href = `${prefix}${i}.pdf`;
-            a.target = "_blank";
-            a.textContent = `${prefix === 'student-note' ? 'S' : 'T'}${i}`;
-            container.appendChild(a);
-          }
-        }
-        // Generate Student Notes and Teacher Lessons
-        generateLinks("student-notes", "student-note");
-        generateLinks("teacher-lessons", "teacher-lesson");
-      </script>
-      <!-- JavaScript for Background Colors -->
-      <script>
-        // Function to apply background colors for each section
-        (function() {
-          const bgClasses = ['bg-level-a', 'bg-level-b', 'bg-level-c', 'bg-level-d'];
-
-          function setBgClass(el, cls) {
-            el.classList.remove(...bgClasses);
-            el.classList.add(cls);
-          }
-
-          function applyBg(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (!section) return;
-            const anchors = section.querySelectorAll('a');
-            anchors.forEach((a, idx) => {
-              setBgClass(a, bgClasses[idx % bgClasses.length]);
-            });
-          }
-          // Apply background to these sections (make sure IDs exist in your HTML)
-          applyBg('신규회원 레벨 테스트');
-          applyBg('수강생 레벨 테스트');
-          applyBg('통합영어학습 테스트');
-          applyBg('수강생 수업노트');
-          applyBg('선생님 강의노트트');
-        })();
-      </script>
-      <!-- ===== Bottom Ticker Styles ===== -->
-      <style>
-        /* Container for the bottom ticker */
-        .bottom-ticker-container {
-          width: 100%;
-          overflow: hidden;
-          background: #ffd700;
-          border-radius: 6px;
-          padding: 10px 0;
-          margin: 15px 0;
-          position: relative;
-        }
-
-        /* Ticker content styling */
-        #bottom-ticker {
-          display: flex;
-          white-space: nowrap;
-          font-weight: bold;
-          will-change: transform;
-          animation: scroll-left 10s linear infinite;
-          /* Added animation for smooth scrolling */
-        }
-
-        #bottom-ticker span {
-          margin-right: 80px;
-        }
-
-        #bottom-ticker a {
-          text-decoration: none;
-          color: royalblue;
-        }
-
-        #bottom-ticker a:hover {
-          text-decoration: underline;
-        }
-
-        /* Animation for infinite scrolling */
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(100%);
-            /* Start off-screen */
-          }
-
-          100% {
-            transform: translateX(-100%);
-            /* End off-screen */
-          }
-        }
-      </style>
-      <!-- ===== Bottom Ticker HTML ===== -->
-      <div class="bottom-ticker-container">
-        <div id="bottom-ticker">
-          <span>
-            <a href="https://www.cnn.com/2025/09/25/europe/russia-daytime-drone-attacks-ukraine-intl-cmd" target="_blank">Russia's Daytime Drone Attacks on Ukraine</a>
-          </span>
-          <span>
-            <a href="https://www.cnn.com/2025/09/24/world/yemen-drone-attack-eilat-intl-latam" target="_blank">Yemen Drone Attack on Eilat</a>
-          </span>
-          <span>
-            <a href="https://www.cnn.com/2025/09/22/europe/copenhagen-oslo-airport-closed-drones-int-latam" target="_blank">Copenhagen & Oslo Airports Closed Due to Drones</a>
-          </span>
-          <span>
-            <a href="https://www.cnn.com/2025/09/23/middleeast/recognizing-palestinian-state-explainer-intl-latam" target="_blank">Explainer: Recognizing a Palestinian State</a>
-          </span>
-        </div>
-      </div>
-      <!-- ===== Bottom Ticker JavaScript (Optional for Control) ===== -->
-      <script>
-        // Duplicating ticker content for infinite scrolling if not using CSS animation
-        const ticker = document.getElementById("bottom-ticker");
-        // Duplicate the ticker content for continuous scrolling
-        ticker.innerHTML += ticker.innerHTML;
-        // Optional: Pausing the ticker on hover
-        let paused = false;
-        const tickerParent = ticker.parentElement;
-        tickerParent.addEventListener("mouseenter", () => paused = true);
-        tickerParent.addEventListener("mouseleave", () => paused = false);
-        // Function to control the ticker position
-        function moveTicker() {
-          if (!paused) {
-            const speed = 20; // Ticker speed
-            const position = ticker.getBoundingClientRect().left;
-            const width = ticker.scrollWidth;
-            // When the ticker moves out of view, reset it to the start
-            if (position <= -width) {
-              ticker.style.transform = 'translateX(100%)'; // Reset position to the right
-            } else {
-              ticker.style.transform = `translateX(${position - speed}px)`;
-            }
-          }
-          requestAnimationFrame(moveTicker); // Call moveTicker recursively for continuous movement
-        }
-        // Start the ticker movement
-        moveTicker();
-    
+  </script>
+</body>
+</html>
